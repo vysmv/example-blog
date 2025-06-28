@@ -1,0 +1,288 @@
+2025-05-20 11:28:18,566 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-05-20 11:28:18,567 INFO daemonizing the supervisord process
+2025-05-20 11:28:18,567 INFO supervisord started with pid 75
+2025-05-20 11:28:19,569 INFO spawned: 'queue-worker_00' with pid 79
+2025-05-20 11:28:20,570 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-05-20 15:36:08,692 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-20 15:36:09,695 INFO spawned: 'queue-worker_00' with pid 86
+2025-05-20 15:36:09,794 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-20 15:36:10,797 INFO spawned: 'queue-worker_00' with pid 91
+2025-05-20 15:36:10,890 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-20 15:36:12,894 INFO spawned: 'queue-worker_00' with pid 96
+2025-05-20 15:36:12,987 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-21 04:39:07,060 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-05-21 04:39:07,062 INFO daemonizing the supervisord process
+2025-05-21 04:39:07,062 INFO supervisord started with pid 41
+2025-05-21 04:39:08,066 INFO spawned: 'queue-worker_00' with pid 45
+2025-05-21 04:39:09,068 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-05-21 17:28:33,599 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-21 17:28:34,602 INFO spawned: 'queue-worker_00' with pid 50
+2025-05-21 17:28:34,692 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-21 17:28:35,695 INFO spawned: 'queue-worker_00' with pid 55
+2025-05-21 17:28:35,797 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-21 17:28:37,801 INFO spawned: 'queue-worker_00' with pid 60
+2025-05-21 17:28:37,900 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-27 05:06:49,562 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-05-27 05:06:49,565 INFO daemonizing the supervisord process
+2025-05-27 05:06:49,565 INFO supervisord started with pid 41
+2025-05-27 05:06:50,569 INFO spawned: 'queue-worker_00' with pid 45
+2025-05-27 05:06:51,570 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-05-27 08:46:18,685 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-05-27 08:46:18,686 INFO daemonizing the supervisord process
+2025-05-27 08:46:18,687 INFO supervisord started with pid 41
+2025-05-27 08:46:19,691 INFO spawned: 'queue-worker_00' with pid 45
+2025-05-27 08:46:20,692 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-05-27 15:27:44,222 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-27 15:27:45,225 INFO spawned: 'queue-worker_00' with pid 50
+2025-05-27 15:27:45,320 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-27 15:27:46,323 INFO spawned: 'queue-worker_00' with pid 55
+2025-05-27 15:27:46,419 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-27 15:27:48,423 INFO spawned: 'queue-worker_00' with pid 60
+2025-05-27 15:27:48,522 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-30 13:43:23,691 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-05-30 13:43:23,692 INFO daemonizing the supervisord process
+2025-05-30 13:43:23,693 INFO supervisord started with pid 41
+2025-05-30 13:43:24,697 INFO spawned: 'queue-worker_00' with pid 45
+2025-05-30 13:43:25,698 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-05-30 15:39:48,972 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-30 15:39:49,975 INFO spawned: 'queue-worker_00' with pid 50
+2025-05-30 15:39:50,069 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-30 15:39:51,072 INFO spawned: 'queue-worker_00' with pid 55
+2025-05-30 15:39:51,167 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-05-30 15:39:53,172 INFO spawned: 'queue-worker_00' with pid 60
+2025-05-30 15:39:53,265 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-01 06:45:34,660 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-01 06:45:34,661 INFO daemonizing the supervisord process
+2025-06-01 06:45:34,662 INFO supervisord started with pid 41
+2025-06-01 06:45:35,665 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-01 06:45:36,668 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-01 06:56:52,140 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-01 06:56:52,141 INFO daemonizing the supervisord process
+2025-06-01 06:56:52,141 INFO supervisord started with pid 41
+2025-06-01 06:56:53,144 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-01 06:56:54,146 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-01 13:40:12,406 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-01 13:40:12,407 INFO spawned: 'queue-worker_00' with pid 88
+2025-06-01 13:40:12,492 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-01 13:40:13,495 INFO spawned: 'queue-worker_00' with pid 93
+2025-06-01 13:40:13,587 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-01 13:40:15,591 INFO spawned: 'queue-worker_00' with pid 98
+2025-06-01 13:40:15,681 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-01 13:40:18,687 INFO spawned: 'queue-worker_00' with pid 103
+2025-06-01 13:40:18,792 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-01 13:40:19,793 INFO gave up: queue-worker_00 entered FATAL state, too many start retries too quickly
+2025-06-02 04:27:42,011 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-02 04:27:42,013 INFO daemonizing the supervisord process
+2025-06-02 04:27:42,013 INFO supervisord started with pid 42
+2025-06-02 04:27:43,017 INFO spawned: 'queue-worker_00' with pid 46
+2025-06-02 04:27:44,019 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-06 15:40:39,120 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-06 15:40:39,122 INFO daemonizing the supervisord process
+2025-06-06 15:40:39,122 INFO supervisord started with pid 41
+2025-06-06 15:40:40,125 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-06 15:40:41,127 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-06 16:27:31,960 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-06 16:27:32,963 INFO spawned: 'queue-worker_00' with pid 50
+2025-06-06 16:27:33,066 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-06 16:27:34,069 INFO spawned: 'queue-worker_00' with pid 55
+2025-06-06 16:27:34,163 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-06 16:27:36,167 INFO spawned: 'queue-worker_00' with pid 60
+2025-06-06 16:27:36,265 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-07 12:06:04,791 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-07 12:06:04,793 INFO daemonizing the supervisord process
+2025-06-07 12:06:04,793 INFO supervisord started with pid 41
+2025-06-07 12:06:05,796 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-07 12:06:06,798 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-07 17:21:02,172 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-07 17:21:03,175 INFO spawned: 'queue-worker_00' with pid 50
+2025-06-07 17:21:03,275 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-07 17:21:04,278 INFO spawned: 'queue-worker_00' with pid 55
+2025-06-07 17:21:04,370 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-07 17:21:06,373 INFO spawned: 'queue-worker_00' with pid 60
+2025-06-07 17:21:06,475 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-08 09:08:20,782 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-08 09:08:20,784 INFO daemonizing the supervisord process
+2025-06-08 09:08:20,784 INFO supervisord started with pid 41
+2025-06-08 09:08:21,788 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-08 09:08:22,790 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-08 15:23:05,490 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-08 15:23:06,494 INFO spawned: 'queue-worker_00' with pid 50
+2025-06-08 15:23:06,588 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-08 15:23:07,591 INFO spawned: 'queue-worker_00' with pid 55
+2025-06-08 15:23:07,686 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-08 15:23:09,690 INFO spawned: 'queue-worker_00' with pid 60
+2025-06-08 15:23:09,783 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-10 11:07:38,117 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-10 11:07:38,119 INFO daemonizing the supervisord process
+2025-06-10 11:07:38,119 INFO supervisord started with pid 41
+2025-06-10 11:07:39,122 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-10 11:07:40,124 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 05:33:08,302 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 05:33:08,304 INFO daemonizing the supervisord process
+2025-06-17 05:33:08,304 INFO supervisord started with pid 41
+2025-06-17 05:33:09,308 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 05:33:10,309 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 10:20:59,073 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 10:20:59,074 INFO daemonizing the supervisord process
+2025-06-17 10:20:59,075 INFO supervisord started with pid 41
+2025-06-17 10:21:00,077 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 10:21:01,078 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 10:29:20,033 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 10:29:20,035 INFO daemonizing the supervisord process
+2025-06-17 10:29:20,035 INFO supervisord started with pid 41
+2025-06-17 10:29:21,040 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 10:29:22,041 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 10:40:39,174 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 10:40:39,175 INFO daemonizing the supervisord process
+2025-06-17 10:40:39,176 INFO supervisord started with pid 63
+2025-06-17 10:40:40,179 INFO spawned: 'queue-worker_00' with pid 67
+2025-06-17 10:40:41,181 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 10:52:45,510 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 10:52:45,511 INFO daemonizing the supervisord process
+2025-06-17 10:52:45,511 INFO supervisord started with pid 41
+2025-06-17 10:52:46,515 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 10:52:47,516 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 11:02:58,254 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 11:02:58,255 INFO daemonizing the supervisord process
+2025-06-17 11:02:58,256 INFO supervisord started with pid 63
+2025-06-17 11:02:59,259 INFO spawned: 'queue-worker_00' with pid 67
+2025-06-17 11:03:00,261 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 12:00:09,394 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 12:00:09,395 INFO daemonizing the supervisord process
+2025-06-17 12:00:09,396 INFO supervisord started with pid 41
+2025-06-17 12:00:10,400 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 12:00:11,402 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 14:43:50,493 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 14:43:50,494 INFO daemonizing the supervisord process
+2025-06-17 14:43:50,495 INFO supervisord started with pid 41
+2025-06-17 14:43:51,498 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 14:43:52,499 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 15:39:27,503 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-17 15:39:27,504 INFO daemonizing the supervisord process
+2025-06-17 15:39:27,504 INFO supervisord started with pid 41
+2025-06-17 15:39:28,509 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-17 15:39:29,510 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-17 15:47:48,913 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-17 15:47:49,917 INFO spawned: 'queue-worker_00' with pid 50
+2025-06-17 15:47:50,010 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-17 15:47:51,014 INFO spawned: 'queue-worker_00' with pid 55
+2025-06-17 15:47:51,120 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-17 15:47:53,123 INFO spawned: 'queue-worker_00' with pid 60
+2025-06-17 15:47:53,222 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-17 15:47:56,227 INFO spawned: 'queue-worker_00' with pid 65
+2025-06-17 15:47:56,320 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-17 15:47:57,321 INFO gave up: queue-worker_00 entered FATAL state, too many start retries too quickly
+2025-06-18 05:37:28,635 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 05:37:28,636 INFO daemonizing the supervisord process
+2025-06-18 05:37:28,637 INFO supervisord started with pid 41
+2025-06-18 05:37:29,639 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-18 05:37:30,640 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 05:58:11,933 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 05:58:11,935 INFO daemonizing the supervisord process
+2025-06-18 05:58:11,935 INFO supervisord started with pid 63
+2025-06-18 05:58:12,938 INFO spawned: 'queue-worker_00' with pid 67
+2025-06-18 05:58:13,940 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 06:57:41,672 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 06:57:41,673 INFO daemonizing the supervisord process
+2025-06-18 06:57:41,673 INFO supervisord started with pid 41
+2025-06-18 06:57:42,675 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-18 06:57:43,677 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 07:46:49,502 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 07:46:49,504 INFO daemonizing the supervisord process
+2025-06-18 07:46:49,504 INFO supervisord started with pid 41
+2025-06-18 07:46:50,508 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-18 07:46:51,509 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 08:28:03,235 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 08:28:03,237 INFO daemonizing the supervisord process
+2025-06-18 08:28:03,237 INFO supervisord started with pid 41
+2025-06-18 08:28:04,241 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-18 08:28:05,243 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 09:04:11,182 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 09:04:11,183 INFO daemonizing the supervisord process
+2025-06-18 09:04:11,183 INFO supervisord started with pid 63
+2025-06-18 09:04:12,187 INFO spawned: 'queue-worker_00' with pid 67
+2025-06-18 09:04:13,189 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 09:40:10,262 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 09:40:10,263 INFO daemonizing the supervisord process
+2025-06-18 09:40:10,264 INFO supervisord started with pid 63
+2025-06-18 09:40:11,267 INFO spawned: 'queue-worker_00' with pid 67
+2025-06-18 09:40:12,269 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 09:49:39,003 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 09:49:39,004 INFO daemonizing the supervisord process
+2025-06-18 09:49:39,004 INFO supervisord started with pid 41
+2025-06-18 09:49:40,006 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-18 09:49:41,008 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-18 10:12:38,905 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-18 10:12:38,906 INFO daemonizing the supervisord process
+2025-06-18 10:12:38,907 INFO supervisord started with pid 43
+2025-06-18 10:12:39,909 INFO spawned: 'queue-worker_00' with pid 47
+2025-06-18 10:12:39,929 WARN exited: queue-worker_00 (exit status 255; not expected)
+2025-06-18 10:12:40,930 INFO spawned: 'queue-worker_00' with pid 48
+2025-06-18 10:12:40,945 WARN exited: queue-worker_00 (exit status 255; not expected)
+2025-06-18 10:12:42,948 INFO spawned: 'queue-worker_00' with pid 49
+2025-06-18 10:12:42,986 WARN exited: queue-worker_00 (exit status 255; not expected)
+2025-06-18 10:12:45,991 INFO spawned: 'queue-worker_00' with pid 50
+2025-06-18 10:12:46,011 WARN exited: queue-worker_00 (exit status 255; not expected)
+2025-06-18 10:12:47,013 INFO gave up: queue-worker_00 entered FATAL state, too many start retries too quickly
+2025-06-23 11:20:55,665 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-23 11:20:55,667 INFO daemonizing the supervisord process
+2025-06-23 11:20:55,667 INFO supervisord started with pid 41
+2025-06-23 11:20:56,669 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-23 11:20:57,670 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-23 15:36:50,971 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-23 15:36:51,974 INFO spawned: 'queue-worker_00' with pid 51
+2025-06-23 15:36:52,077 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-23 15:36:53,080 INFO spawned: 'queue-worker_00' with pid 56
+2025-06-23 15:36:53,176 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-23 15:36:55,180 INFO spawned: 'queue-worker_00' with pid 61
+2025-06-23 15:36:55,282 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-23 15:36:58,287 INFO spawned: 'queue-worker_00' with pid 66
+2025-06-23 15:36:58,388 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-23 15:36:59,389 INFO gave up: queue-worker_00 entered FATAL state, too many start retries too quickly
+2025-06-24 06:17:08,729 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-24 06:17:08,731 INFO daemonizing the supervisord process
+2025-06-24 06:17:08,731 INFO supervisord started with pid 41
+2025-06-24 06:17:09,735 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-24 06:17:10,737 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-24 13:54:17,555 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-24 13:54:17,556 INFO daemonizing the supervisord process
+2025-06-24 13:54:17,557 INFO supervisord started with pid 40
+2025-06-24 13:54:18,561 INFO spawned: 'queue-worker_00' with pid 44
+2025-06-24 13:54:19,563 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-24 15:34:32,129 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-24 15:34:33,132 INFO spawned: 'queue-worker_00' with pid 49
+2025-06-24 15:34:33,233 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-24 15:34:34,236 INFO spawned: 'queue-worker_00' with pid 54
+2025-06-24 15:34:34,329 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-24 15:34:36,332 INFO spawned: 'queue-worker_00' with pid 59
+2025-06-24 15:34:36,428 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-24 15:34:39,432 INFO spawned: 'queue-worker_00' with pid 64
+2025-06-24 15:34:39,528 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-24 15:34:40,529 INFO gave up: queue-worker_00 entered FATAL state, too many start retries too quickly
+2025-06-25 04:51:47,189 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-25 04:51:47,191 INFO daemonizing the supervisord process
+2025-06-25 04:51:47,191 INFO supervisord started with pid 41
+2025-06-25 04:51:48,195 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-25 04:51:49,197 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-27 11:56:36,740 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-27 11:56:36,742 INFO daemonizing the supervisord process
+2025-06-27 11:56:36,742 INFO supervisord started with pid 41
+2025-06-27 11:56:37,746 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-27 11:56:38,747 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-27 14:12:42,668 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-27 14:12:43,671 INFO spawned: 'queue-worker_00' with pid 50
+2025-06-27 14:12:43,773 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-27 14:12:44,776 INFO spawned: 'queue-worker_00' with pid 55
+2025-06-27 14:12:44,871 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-27 14:12:46,875 INFO spawned: 'queue-worker_00' with pid 60
+2025-06-27 14:12:46,975 WARN exited: queue-worker_00 (exit status 1; not expected)
+2025-06-28 10:43:34,943 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-28 10:43:34,945 INFO daemonizing the supervisord process
+2025-06-28 10:43:34,945 INFO supervisord started with pid 41
+2025-06-28 10:43:35,949 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-28 10:43:36,950 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-06-28 11:46:58,305 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-06-28 11:46:58,306 INFO daemonizing the supervisord process
+2025-06-28 11:46:58,306 INFO supervisord started with pid 41
+2025-06-28 11:46:59,310 INFO spawned: 'queue-worker_00' with pid 45
+2025-06-28 11:47:00,312 INFO success: queue-worker_00 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

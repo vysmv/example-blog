@@ -1,0 +1,25 @@
+{
+    "name": "vysmv/easy-start",
+    "description": "The package allows you to install frequently used elements for a quick start on a typical Laravel web application",
+    "type": "package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vysmv\\EasyStart\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vysmv\\EasyStart\\Core\\EasyStartCoreServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Suhomlinov Vitaliy"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

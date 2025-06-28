@@ -1,0 +1,761 @@
+# Структура пакета Easy Start
+
+```
+easy-start/
+|--src/
+|  |--Core/
+|  |  |--config/
+|  |  |  |--easy-start.php
+|  |  |  |--.editorconfig
+|  |  |--Console/
+|  |  |  |--Commands/
+|  |  |  |  |--InstallCoreCommand.php
+|  |  |  |  |--ShowConfigCommand.php
+|  |  |--EasyStartCoreServiceProvider.php
+|  |--Docker/
+|  |  |--docker-compose.yml
+|  |  |--env/
+|  |  |  |--.env
+|  |  |--Makefile
+|  |  |--docker/
+|  |  |  |--nginx/
+|  |  |  |  |--conf.d/
+|  |  |  |  |  |--default.conf
+|  |  |  |  |--Dockerfile
+|  |  |  |  |--log/
+|  |  |  |--minio/
+|  |  |  |--redis/
+|  |  |  |  |--Dockerfile
+|  |  |  |--mysql/
+|  |  |  |  |--Dockerfile
+|  |  |  |--php-fpm/
+|  |  |  |  |--entrypoint.bash
+|  |  |  |  |--Dockerfile
+|  |  |  |  |--config/
+|  |  |  |  |  |--custom.ini
+|  |  |  |  |--supervisor/
+|  |  |  |  |  |--supervisord.conf
+|  |  |--EasyStartDockerServiceProvider.php
+|  |  |--Console/
+|  |  |  |--Commands/
+|  |  |  |  |--InstallDockerCommand.php
+|--composer.json
+```
+## Содержание всех файлов пакета
+
+### Файл:easy-start/src/Core/config/easy-start.php
+
+```php
+<?php
+
+return [
+    'app_namespace'             => app()->getNamespace(),
+    'home_route'                => '',
+    'standart_entities_enabled' => env('EASYSTART_ENTITIES_ENABLED', false),
+    'admin_options' => [
+        'app_name'  => env('EASYSTART_APP_NAME', env('EASYSTART_ENTITIES_ENABLED', 'Your app name')),
+        'copyright' => env('EASYSTART_COPYRIGHT', 'Your copyright text')
+    ],
+    'docker' => [
+        'db_name'           => 'easy_start',
+        'minio_backet_name' => 'easy-start'
+    ],
+];
+
+```
+
+### Файл:easy-start/src/Core/config/.editorconfig
+
+```php
+#PHPSTORM automatically adapts to the directives described in this file.
+#VS Code requires installation of the ‘EditorConfig for VS Code’ extension
+# editorconfig.org
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.php]
+tab_width = 4
+indent_size = 4
+
+[*.html]
+tab_width = 4
+indent_size = 4
+
+[*.xml]
+tab_width = 4
+indent_size = 4
+
+[*.json]
+tab_width = 4
+indent_size = 4
+
+[*.yml]
+tab_width = 4
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+tab_width = 4
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+
+```
+
+### Файл:easy-start/src/Core/Console/Commands/InstallCoreCommand.php
+
+```php
+<?php
+
+namespace Vysmv\EasyStart\Core\Console\Commands;
+
+use Illuminate\Console\Command;
+
+class InstallCoreCommand extends Command
+{
+    /**
+     * Имя команды (то, что вводится в терминале)
+     */
+    protected $signature = 'easy-start:install';
+
+    /**
+     * Описание команды
+     */
+    protected $description = 'Устанавливает и настраивает EasyStart';
+
+    /**
+     * Логика команды
+     */
+    public function handle()
+    {
+        $this->info('🔧 Установка EasyStart...');
+
+        $this->call('vendor:publish', ['--tag' => 'easy-start-config']);
+
+        $this->removeStandartEditorConfig();
+        $this->call('vendor:publish', ['--tag' => 'easy-start-editorconfig']);
+
+        $this->info('✅ Стандартная конфигурация опубликована!');
+    }
+
+    private function removeStandartEditorConfig(): void
+    {
+        if (file_exists(base_path('.editorconfig'))) {
+            unlink(base_path('.editorconfig'));
+        }
+    }
+}
+
+```
+
+### Файл:easy-start/src/Core/Console/Commands/ShowConfigCommand.php
+
+```php
+<?php
+
+namespace Vysmv\EasyStart\Core\Console\Commands;
+
+use Illuminate\Console\Command;
+
+class ShowConfigCommand extends Command
+{
+    protected $signature = 'easy-start:show-config';
+
+    /**
+     * Описание команды
+     */
+    protected $description = 'Демонстрирует текущие значения файла /config/easy-start.php';
+
+    /**
+     * Логика команды
+     */
+    public function handle()
+    {
+        dump(config('easy-start'));
+    }
+}
+
+```
+
+### Файл:easy-start/src/Core/EasyStartCoreServiceProvider.php
+
+```php
+<?php
+
+namespace Vysmv\EasyStart\Core;
+
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * Это главный сервис-провайдер пакета, который загружается первым и
+ * подключает остальные части пакета посредством $this->app->register.
+ */
+
+class EasyStartCoreServiceProvider extends ServiceProvider
+{
+    /**
+     * Выполняется после загрузки всех сервисов, когда Laravel уже готов к работе.
+     * Тут удобно загружать миграции, публиковать файлы, привязывать события и т. д.
+     */
+    public function boot()
+    {
+        $this->publishesMainConfig();
+
+        $this->publishesEditorConfig();
+    }
+
+    /**
+     * Выполняется до загрузки всех сервисов и используется для привязки сервисов в контейнере,
+     * регистрации конфигов и команд. Отрабатывает раньше чем boot.
+     */
+    public function register()
+    {
+        /**
+         * Метод mergeConfigFrom() позволяет не перезаписывать конфиг, если он уже опубликован,
+         * а дополнять его значениями по умолчанию.
+         *
+         * Что делает?
+         * Загружает дефолтный конфиг из пакета.
+         * Если конфиг не опубликован в config/easy-start.php, Laravel будет использовать версию из пакета.
+         * Если конфиг опубликован, Laravel объединяет его с дефолтным из пакета.
+         * $this->mergeConfigFrom(__DIR__.'/config/easy-start.php', 'easy-start');
+         */
+
+        /**
+         * Подключает к системе набор artisan команд.
+         */
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Vysmv\EasyStart\Core\Console\Commands\InstallCoreCommand::class,
+                \Vysmv\EasyStart\Core\Console\Commands\ShowConfigCommand::class,
+            ]);
+        }
+
+          $this->app->register(\Vysmv\EasyStart\Docker\EasyStartDockerServiceProvider::class);
+    }
+
+    private function publishesMainConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/config/easy-start.php' => config_path('easy-start.php'),
+        ], 'easy-start-config');
+    }
+
+    private function publishesEditorConfig(): void
+    {
+        $this->publishes([
+            __DIR__ . '/config/.editorconfig' => base_path('.editorconfig'),
+        ], 'easy-start-editorconfig');
+    }
+}
+
+```
+
+### Файл:easy-start/src/Docker/docker-compose.yml
+
+```php
+services:
+    nginx:
+        build:
+            context: docker/nginx
+        ports:
+            - "8080:80"
+        volumes:
+            - ./:/app
+            - ./docker/nginx/log:/var/log/nginx
+        depends_on:
+            - php-fpm
+            - db
+            - redis
+
+    php-fpm:
+        build:
+            context: docker/php-fpm
+        env_file: ./.env
+        command: bash -c 'entrypoint'
+        volumes:
+            - ./:/app
+            - ./docker/php-fpm/entrypoint.bash:/usr/local/bin/entrypoint
+            - ./docker/php-fpm/config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+        depends_on:
+            - db
+            - redis
+
+    db:
+        build:
+            context: docker/mysql
+        environment:
+        - MYSQL_DATABASE=${DB_DATABASE}
+        - MYSQL_USER=${DB_USERNAME}
+        - MYSQL_PASSWORD=${DB_PASSWORD}
+        - MYSQL_RANDOM_ROOT_PASSWORD=yes
+        ports:
+        - "3307:3306"
+        command: --mysql-native-password=ON
+        volumes:
+            - db_data:/var/lib/mysql
+
+    redis:
+        build:
+            context: docker/redis
+        ports:
+        - "6379:6379"
+        volumes:
+        - redis_data:/data
+    minio:
+        image: minio/minio:latest
+        environment:
+            MINIO_ROOT_USER: minioadmin
+            MINIO_ROOT_PASSWORD: minioadmin
+        command: server --console-address ":9001" /data
+        ports:
+            - "9000:9000"
+            - "9001:9001"
+        volumes:
+            - minio_data:/data
+
+volumes:
+  db_data:
+  redis_data:
+  minio_data:
+
+```
+
+### Файл:easy-start/src/Docker/env/.env
+
+```php
+
+
+#Specify the name and ID of the user you will be running as on your host machine.
+#This will allow container to run under a copy of the user your host machine.
+#This will avoid some problems with access rights to application files thrown into the container.
+#The id command entered in the terminal will help.  You can leave password as SYSTEM_USER_PASSWORD.
+#If you are using windows, you can set MAIN_SYSTEM_USER_NAME=root and MAIN_SYSTEM_USER_ID=0.
+EASY_START_MAIN_SYSTEM_USER_ID='id'
+EASY_START_MAIN_SYSTEM_USER_NAME='name'
+
+```
+
+### Файл:easy-start/src/Docker/Makefile
+
+```php
+init: docker-pull docker-build-pull docker-up app-init
+
+clear: docker-down-clear
+
+start: docker-up
+
+stop: docker compose down
+
+test:
+	./vendor/bin/phpunit --color=always
+
+docker-up:
+	docker compose up
+
+docker-down-clear:
+	docker compose down -v --remove-orphans
+
+docker-pull:
+	docker compose pull
+
+docker-build-pull:
+	docker compose build --pull
+
+app-init: composer install
+
+```
+
+### Файл:easy-start/src/Docker/docker/nginx/conf.d/default.conf
+
+```php
+server {
+    listen 80;
+    server_name localhost;
+    charset utf-8;
+    index index.php;
+
+    root /app/public;
+
+    location / {
+        try_files $uri /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass php-fpm:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+}
+
+```
+
+### Файл:easy-start/src/Docker/docker/nginx/Dockerfile
+
+```php
+FROM nginx:stable
+
+COPY ./conf.d/default.conf /etc/nginx/conf.d
+
+WORKDIR /app
+
+```
+
+### Файл:easy-start/src/Docker/docker/redis/Dockerfile
+
+```php
+FROM redis:latest
+
+```
+
+### Файл:easy-start/src/Docker/docker/mysql/Dockerfile
+
+```php
+FROM mysql:8
+
+```
+
+### Файл:easy-start/src/Docker/docker/php-fpm/entrypoint.bash
+
+```php
+#!/usr/bin/bash
+
+# Function helpers
+function create_new_user(){
+    groupadd -g "${EASY_START_MAIN_SYSTEM_USER_ID}" "${EASY_START_MAIN_SYSTEM_USER_NAME}"
+    useradd -u "${EASY_START_MAIN_SYSTEM_USER_ID}" -g "${EASY_START_MAIN_SYSTEM_USER_ID}" -s /bin/bash -m "${EASY_START_MAIN_SYSTEM_USER_NAME}"
+    usermod -aG sudo "${EASY_START_MAIN_SYSTEM_USER_NAME}"
+    echo "${EASY_START_MAIN_SYSTEM_USER_NAME}:${MAIN_SYSTEM_USER_PASSWORD}" | chpasswd
+}
+
+function unify_access_rights(){
+    local USER="${EASY_START_MAIN_SYSTEM_USER_NAME}"
+    local GROUP="www-data"
+
+    # Changing the owner, excluding docker
+    find /app -path "/app/docker" -prune -o -exec chown "$USER":"$GROUP" {} +
+
+    # Changing access rights, excluding docker
+    find /app -path "/app/docker" -prune -o -exec chmod 775 {} +
+}
+#===========================================================
+
+# Create user and group for unifying file access rights on the host and in the container
+if ! getent passwd "$EASY_START_MAIN_SYSTEM_USER_NAME" > /dev/null ; then
+    create_new_user
+fi
+unify_access_rights
+
+until mysql \
+    --host="$DB_HOST" \
+    --user="$DB_USERNAME" \
+    --password="$DB_PASSWORD" \
+    --port="$DB_PORT" \
+    --execute="SELECT 1;" > /dev/null 2>&1
+do
+  echo "Waiting for MySQL..."
+  sleep 1
+done
+
+php artisan migrate
+
+supervisord -c /etc/supervisor/supervisord.conf
+
+# Success message
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
+echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ${ENDCOLOR}"
+echo -e "${GREEN}+                                            INSTALL DONE                                         + ${ENDCOLOR}"
+echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ${ENDCOLOR}"
+
+echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ${ENDCOLOR}"
+echo -e "${GREEN}+                                          Have a nice job :)                                     + ${ENDCOLOR}"
+echo -e "${GREEN}+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ${ENDCOLOR}"
+php-fpm
+
+```
+
+### Файл:easy-start/src/Docker/docker/php-fpm/Dockerfile
+
+```php
+FROM php:fpm
+
+RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
+
+RUN apt-get update && apt-get install -y \
+    curl \
+    procps \
+    libicu-dev \
+    libzip-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    libxml2-dev \
+    unzip \
+    git \
+    cron \
+    supervisor \
+    default-mysql-client \
+    && docker-php-ext-install pdo_mysql zip gd intl mbstring xml \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && pecl install redis && docker-php-ext-enable redis \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+COPY supervisor/supervisord.conf /etc/supervisor/supervisord.conf
+
+WORKDIR /app
+
+```
+
+### Файл:easy-start/src/Docker/docker/php-fpm/config/custom.ini
+
+```php
+memory_limit = 256M
+max_execution_time = 50
+upload_max_filesize = 40M
+post_max_size = 40M
+error_reporting	= E_ALL
+
+```
+
+### Файл:easy-start/src/Docker/docker/php-fpm/supervisor/supervisord.conf
+
+```php
+[supervisord]
+nodaemon=false
+logfile=/app/docker/php-fpm/supervisor/supervisord.log
+pidfile=/app/docker/php-fpm/supervisor/supervisord.pid
+
+[program:queue-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=/usr/local/bin/php /app/artisan queue:work --sleep=5 --tries=3 --timeout=90
+autostart=true
+autorestart=true
+user=www-data
+numprocs=1
+redirect_stderr=true
+stdout_logfile=/app/docker/php-fpm/supervisor/queue-worker.log
+
+```
+
+### Файл:easy-start/src/Docker/EasyStartDockerServiceProvider.php
+
+```php
+<?php
+
+namespace Vysmv\EasyStart\Docker;
+
+use Illuminate\Support\ServiceProvider;
+
+class EasyStartDockerServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__ . '/docker' => base_path('/docker'),
+        ], 'easy-start-docker');
+
+        $this->publishes([
+            __DIR__ . '/docker-compose.yml' => base_path('/docker-compose.yml'),
+        ], 'easy-start-docker-compose-yml');
+
+        $this->publishes([
+            __DIR__ . '/Makefile' => base_path('/Makefile'),
+        ], 'easy-start-docker-compose-yml');
+    }
+
+    public function register()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Vysmv\EasyStart\Docker\Console\Commands\InstallDockerCommand::class,
+            ]);
+        }
+    }
+}
+
+```
+
+### Файл:easy-start/src/Docker/Console/Commands/InstallDockerCommand.php
+
+```php
+<?php
+
+namespace Vysmv\EasyStart\Docker\Console\Commands;
+
+use Illuminate\Console\Command;
+
+class InstallDockerCommand extends Command
+{
+    protected $signature = 'easy-start:install-docker';
+
+    protected $description = 'This command installs the docker';
+
+    public function handle()
+    {
+        $this->info('🔧 Installing docker...');
+
+        $this->addSectionSystemUserInEnv();
+
+        $this->call('vendor:publish', ['--tag' => 'easy-start-docker']);
+
+        $this->makeBasicActionFileExecutable();
+
+        $this->call('vendor:publish', ['--tag' => 'easy-start-docker-compose-yml']);
+
+        $this->updateSectionDBInEnv();
+
+        $this->updateSectionAWSInEnv();
+
+        $this->updateSectionREDISInEnv();
+
+        $this->info('📦 Install the package league/flysystem-aws-s3-v3...');
+        shell_exec('composer require league/flysystem-aws-s3-v3');
+        $this->info('✅ The package "league/flysystem-aws-s3-v3" is installed!');
+
+        $this->info('✅ Docker is installed!');
+    }
+
+    private function addSectionSystemUserInEnv(): void
+    {
+        if (PHP_OS_FAMILY === 'Linux') {
+            $id = getmyuid();
+            $name = get_current_user();
+        } elseif (PHP_OS_FAMILY === 'Windows') {
+            $id = 0;
+            $name = 'root';
+        } elseif (PHP_OS_FAMILY === 'Darwin') {
+            //
+        }
+
+        $env = file_get_contents(dirname(__DIR__, 2) . '/env/.env');
+        $env = str_replace('id', $id, $env);
+        $env = str_replace('name', $name, $env);
+        file_put_contents(base_path('/.env'), $env, FILE_APPEND);
+    }
+
+    private function makeBasicActionFileExecutable(): void
+    {
+        $file = base_path('/docker/php-fpm/entrypoint.bash');
+        if (file_exists($file)) {
+            chmod($file, 0755);
+        }
+    }
+
+    private function updateSectionDBInEnv(): void
+    {
+        $filePath = base_path() . '/.env'; // Укажи путь к файлу .env
+
+        $envContent = file_get_contents($filePath);
+
+        $dbName = config('easy-start.docker.db_name');
+
+         // Удаляем старый блок DB
+        $envContent = preg_replace(
+            '/DB_CONNECTION=sqlite\n# DB_HOST=127.0.0.1\n# DB_PORT=3306\n# DB_DATABASE=laravel\n# DB_USERNAME=root\n# DB_PASSWORD=\n?/m',
+            '',
+            $envContent
+        );
+
+        // Добавляем новый блок DB в конец
+        $newDbBlock = "\nDB_CONNECTION=mysql\nDB_HOST=db\nDB_PORT=3306\nDB_DATABASE={$dbName}\nDB_USERNAME=admin\nDB_PASSWORD=admin\n";
+
+        $envContent = rtrim($envContent) . "\n" . $newDbBlock;
+
+        file_put_contents($filePath, $envContent);
+    }
+
+    private function updateSectionAWSInEnv(): void
+    {
+        $envFile = base_path('/.env');
+        // Считываем содержимое файла
+        $envContent = file_get_contents($envFile);
+
+        // Удаляем старый блок AWS
+        $envContent = preg_replace(
+            '/AWS_ACCESS_KEY_ID=.*\nAWS_SECRET_ACCESS_KEY=.*\nAWS_DEFAULT_REGION=us-east-1\nAWS_BUCKET=.*\nAWS_USE_PATH_STYLE_ENDPOINT=false\n?/m',
+            '',
+            $envContent
+        );
+
+        $backetName = config('easy-start.docker.minio_backet_name');
+        // Добавляем новый блок в конец
+        $newAwsBlock = "\nAWS_ACCESS_KEY_ID=minioadmin\nAWS_SECRET_ACCESS_KEY=minioadmin\nAWS_DEFAULT_REGION=us-east-1\nAWS_BUCKET={$backetName}\nAWS_USE_PATH_STYLE_ENDPOINT=true\nAWS_ENDPOINT=http://minio:9000\n";
+
+        $envContent = rtrim($envContent) . "\n" . $newAwsBlock;
+
+        $envContent = preg_replace('/^FILESYSTEM_DISK=local/m', 'FILESYSTEM_DISK=s3', $envContent);
+
+        file_put_contents($envFile, $envContent);
+    }
+
+    private function updateSectionREDISInEnv(): void
+    {
+        // Считываем содержимое файла
+        $envFile = base_path('/.env');
+        $envContent = file_get_contents($envFile);
+
+         // Удаляем старый блок Redis
+        $envContent = preg_replace(
+            '/REDIS_CLIENT=phpredis\nREDIS_HOST=127.0.0.1\nREDIS_PASSWORD=null\nREDIS_PORT=6379\n?/m',
+            '',
+            $envContent
+        );
+
+        // Добавляем новый блок Redis в конец
+        $newRedisBlock = "\nREDIS_CLIENT=phpredis\nREDIS_HOST=redis\nREDIS_PASSWORD=\nREDIS_PORT=6379\n";
+
+        $envContent = rtrim($envContent) . "\n" . $newRedisBlock;
+
+        file_put_contents($envFile, $envContent);
+    }
+}
+
+```
+
+### Файл:easy-start/composer.json
+
+```php
+{
+    "name": "vysmv/easy-start",
+    "description": "The package allows you to install frequently used elements for a quick start on a typical Laravel web application",
+    "type": "package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vysmv\\EasyStart\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vysmv\\EasyStart\\Core\\EasyStartCoreServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Suhomlinov Vitaliy"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
+
+```
+
