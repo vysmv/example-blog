@@ -80,8 +80,18 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <button type="button" class="btn btn-outline-primary">Post Image</button>
+                                    <label for="tags"
+                                           class="form-label">Tags</label>
+                                    <select name="tags[]" id="category_id" class="form-select select2" multiple>
+                                        @php 
+                                        $tag_ids = $post->tags->pluck('id')->all()
+                                        @endphp
+                                        @foreach($tags as $tag_id => $tag_title)
+                                            <option value="{{ $tag_id }}" {{ in_array($tag_id, $tag_ids) ? 'selected' : '' }}>{{ $tag_title}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+                                
                             </div>
 
                             <div class="card-footer">

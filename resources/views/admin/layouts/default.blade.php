@@ -40,6 +40,10 @@
       integrity="sha256-9kPW/n5nn53j4WMRYAxe9c1rCY96Oogo/MKSVdKzPmI="
       crossorigin="anonymous"
     />
+
+    @if ( request()->routeIs('admin.posts.create') || request()->routeIs('admin.posts.edit') )
+      <link rel="stylesheet" href="{{ asset('select2/css/select2.min.css') }}">
+    @endif
     <!--end::Third Party Plugin(Bootstrap Icons)-->
     <!--begin::Required Plugin(AdminLTE)-->
     <!-- <link rel="stylesheet" href="../../dist/css/adminlte.css" /> -->
@@ -454,6 +458,14 @@
           updateThumbnailPreview();
           });
 
+      </script>
+
+      <!-- Select2 -->
+      <script src="{{ asset('select2/js/select2.min.js') }}"></script>
+      <script>
+        $(function () {
+          $('.select2').select2();
+        });
       </script>
     @endif
 

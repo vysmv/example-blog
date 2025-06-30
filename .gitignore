@@ -21,3 +21,7 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+/docker/nginx/log/
+/docker/php-fpm/supervisor/supervisord.log
+/docker/php-fpm/supervisor/queue-worker.log

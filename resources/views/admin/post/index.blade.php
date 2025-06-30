@@ -50,6 +50,7 @@ Posts list
                           <th style="width: 10px">ID</th>
                           <th>Title</th>
                           <th>Category</th>
+                          <th>Tags</th>
                           <th style="width: 150px">Actions</th>
                         </tr>
                       </thead>
@@ -59,6 +60,8 @@ Posts list
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->category->title }}</td>
+                            {{-- <td>{{ $post->tags->pluck('title')->join(',') }}</td> --}}
+                            <td>{{ $post->tags->implode('title', ', ') }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{ route('admin.posts.edit', ['post' => $post->id]) }}" class="btn btn-primary"> <i class="bi bi-pencil"> </i> </a>
                                 <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="POST">

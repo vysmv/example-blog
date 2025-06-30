@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::query()->with('category')->paginate(2);
+        $posts = Post::query()->with(['category', 'tags'])->paginate(2);
         $trash_cnt = Post::onlyTrashed()->count();
         return view('admin.post.index', ['posts' => $posts, 'trash_cnt' => $trash_cnt]);
     }
@@ -25,8 +26,10 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::query()->pluck('title', 'id');
+        $tags = Tag::query()->pluck('title', 'id');
         return view('admin.post.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -40,10 +43,12 @@ class PostController extends Controller
             'meta_desc'   => ['max:255'],
             'content'     => ['required'],
             'category_id' => ['required', 'exists:categories,id'],
+            'tags'        => ['exists:tags,id'],
             'thumb'       => ['max:255']
         ]);
 
-        Post::query()->create($validated);
+        $post = Post::query()->create($validated);
+        $post->tags()->sync($request->tags);
         return redirect()
             ->route('admin.posts.index')
             ->with('success', 'Post created successfully');
@@ -64,9 +69,11 @@ class PostController extends Controller
     {
         $post = Post::query()->findOrFail($post->id);
         $categories = Category::query()->pluck('title', 'id')->all();
+        $tags = Tag::query()->pluck('title', 'id');
         return view('admin.post.edit', [
             'categories' => $categories,
-            'post' => $post
+            'post' => $post,
+            'tags' => $tags,
          ]);
         
     }
@@ -82,10 +89,12 @@ class PostController extends Controller
             'meta_desc'   => ['max:255'],
             'content'     => ['required'],
             'category_id' => ['required', 'exists:categories,id'],
+            'tags'        => ['exists:tags,id'],
             'thumb'       => ['max:255']
         ]);
 
         $post->update($validated);
+        $post->tags()->sync($request->tags);
         return redirect()
             ->route('admin.posts.index')
             ->with('success', 'Post updated successfully');
@@ -122,6 +131,11 @@ class PostController extends Controller
     public function trashRemove(string $id) 
     {
        $post = Post::withTrashed()->findOrFail($id);
+       if ($post->tags->count() != 0) {
+            return redirect()
+            ->route('admin.posts.trash')
+            ->with('error', 'Post ' . ' has tagss');
+        }
         $post->forceDelete();
         return redirect()
             ->route('admin.posts.trash')

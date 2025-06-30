@@ -84,11 +84,11 @@ class TagController extends Controller
         $tag = Tag::query()->findOrFail($id);
         $tagName = $tag->title;
         
-        // if ($tag->posts->count() != 0) {
-        //     return redirect()
-        //     ->route('admin.categories.index')
-        //     ->with('error', 'Category ' . $tagName . ' has posts');
-        // }
+        if ($tag->posts->count() != 0) {
+            return redirect()
+            ->route('admin.tags.index')
+            ->with('error', 'Tags ' . $tagName . ' has posts');
+        }
        
         $tag->delete();
         return redirect()

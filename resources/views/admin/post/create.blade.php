@@ -72,14 +72,24 @@
                                            class="form-label required">Category</label>
                                     <select name="category_id" id="category_id" class="form-select">
                                         @foreach($categories as $category_id => $category_title)
-                                            <option value="{{ $category_id }}">{{ $category_title }}</option>
+                                            <option value="{{ $category_id }}" @selected(old('category_id') == $category_id)>{{ $category_title }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
-                                    <button type="button" class="btn btn-outline-primary">Post Image</button>
+                                    <label for="tags"
+                                           class="form-label">Tags</label>
+                                    <select name="tags[]" id="category_id" class="form-select select2" multiple>
+                                        @foreach($tags as $tag_id => $tag_title)
+                                            <option value="{{ $tag_id }}" {{ old('tags') && in_array($tag_id, old('tags')) ? 'selected' : '' }}>{{ $tag_title}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
+                                <!-- <div class="mb-3">
+                                    <button type="button" class="btn btn-outline-primary">Post Image</button>
+                                </div> -->
                             </div>
 
                             <div class="card-footer">
